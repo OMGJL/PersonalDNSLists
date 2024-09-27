@@ -112,3 +112,8 @@ grs.dbankcloud.com
 *.topcashback.com.au
 *.rewardgateway.com.au
 *.agoda.com
+
+# Rockstar games
+prod.telemetry.ros.rockstargames.com
+# Images not loading on aliexpress.com
+ae01.alicdn.com
