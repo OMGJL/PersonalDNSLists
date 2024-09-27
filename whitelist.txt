@@ -59,6 +59,9 @@ continuum.dds.microsoft.com
 officeclient.microsoft.com
 settings-win.data.microsoft.com
 mobile.pipe.aria.microsoft.com
+# Xbox Achievements and game stats sync
+v10.events.data.microsoft.com
+v20.events.data.microsoft.com
 xboxexperiencesprod.experimentation.xboxlive.com
 xflight.xboxlive.com
 def-vef.xboxlive.com
