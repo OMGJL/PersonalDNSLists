@@ -1,3 +1,9 @@
+# PersonalDNSLists: whitelist (one domain per line)
+# AdGuard Home DNS allowlist:
+#   https://raw.githubusercontent.com/OMGJL/PersonalDNSLists/main/whitelist.txt
+# example.org    that exact domain only
+# *.example.org  its subdomains (not example.org itself)
+
 ocsp.apple.com
 xp.apple.com
 appleid.apple.com
@@ -70,7 +76,6 @@ eds.xboxlive.com
 xkms.xboxlive.com
 xsts.auth.xboxlive.com
 licensing.xboxlive.com
-notify.xboxlive.com
 title.auth.xboxlive.com
 title.mgt.xboxlive.com
 attestation.xboxlive.com

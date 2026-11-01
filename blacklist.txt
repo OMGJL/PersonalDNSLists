@@ -1,0 +1,41 @@
+# PersonalDNSLists: blacklist (AdGuard / adblock DNS syntax)
+# AdGuard Home DNS blocklist:
+#   https://raw.githubusercontent.com/OMGJL/PersonalDNSLists/main/blacklist.txt
+# ||example.org^  blocks the domain and all its subdomains
+# $important      wins over @@ exceptions in other blocklists (an allowlist still wins)
+
+# --- ByteDance privacy / analytics ---
+||ma.zijieapi.com^$important
+||mssdk.volces.com^$important
+||mssdk3-normal-lf.zijieapi.com^$important
+||log0-applog-hl.fqnovel.com^$important
+||rtlog5-applog-hl.fqnovel.com^$important
+||pitaya.bytedance.com^$important
+||gecko5-hl.zijieapi.com^$important
+||polaris5-normal-hl.zijieapi.com^$important
+||bsync3-normal-hl.zijieapi.com^$important
+
+# --- Video platform tracking (Douyin/TikTok) ---
+||vdn1.vzuu.com^
+||vdn.vzuu.com^
+
+# --- HTTP DNS tracking (often used by Chinese apps for analytics) ---
+||httpdns.kwd.inkuai.com^
+||httpdns.c.cdnhwc2.com^
+||httpdns.alicdn.com^
+
+# --- App analytics / logging ---
+||tobapplog.volceapplog.com^$important
+||toblog.volceapplog.com^$important
+||alogus.umeng.com^$important
+||zhihu-web-analytics.zhihu.com^
+# OPPO/ColorOS telemetry (covers conn-service-us-04/05.allawnos.com)
+||allawnos.com^$important
+
+# --- Zhihu ads ---
+||open.kwaizt.com^$important
+
+# --- Douyin ads (Pangolin SDK) ---
+||api-access.pangolin-sdk-toutiao*.com^$important
+||api-access.pangolin-sdk-toutiao*.com.*^$important
+||ads*.zijieapi.com^$important
