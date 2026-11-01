@@ -1,41 +1,187 @@
 # PersonalDNSLists: blacklist (AdGuard / adblock DNS syntax)
 # AdGuard Home DNS blocklist:
 #   https://raw.githubusercontent.com/OMGJL/PersonalDNSLists/main/blacklist.txt
-# ||example.org^  blocks the domain and all its subdomains
-# $important      wins over @@ exceptions in other blocklists (an allowlist still wins)
+# ||example.org^   blocks the domain and all its subdomains
+# $important       wins over @@ exceptions in other blocklists (an allowlist still wins)
+#
+# Each group starts with "# [公司] 产品 · 用途". Left alone on purpose: push channels,
+# video/image CDNs, login risk-control device IDs, attribution SDKs (AppsFlyer, Singular:
+# cashback tracking), WorkBuddy's API (www.workbuddy.ai), and anything in whitelist.txt.
 
-# --- ByteDance privacy / analytics ---
+# ==================== 字节跳动 ByteDance ====================
+# [字节] 抖音/番茄小说 SDK · 隐私统计、设备指纹 (msSDK)
 ||ma.zijieapi.com^$important
 ||mssdk.volces.com^$important
 ||mssdk3-normal-lf.zijieapi.com^$important
+# [字节] 番茄小说 · 行为日志 (AppLog)
 ||log0-applog-hl.fqnovel.com^$important
 ||rtlog5-applog-hl.fqnovel.com^$important
+# [字节] 番茄小说 · 性能监控
+||mon*-misc-hl.fqnovel.com^
+# [字节] Pitaya 端智能 · 行为数据
 ||pitaya.bytedance.com^$important
+# [字节] Gecko 资源包下发 / Polaris 活动 / BSync 同步
 ||gecko5-hl.zijieapi.com^$important
 ||polaris5-normal-hl.zijieapi.com^$important
 ||bsync3-normal-hl.zijieapi.com^$important
-
-# --- Video platform tracking (Douyin/TikTok) ---
-||vdn1.vzuu.com^
-||vdn.vzuu.com^
-
-# --- HTTP DNS tracking (often used by Chinese apps for analytics) ---
-||httpdns.kwd.inkuai.com^
-||httpdns.c.cdnhwc2.com^
-||httpdns.alicdn.com^
-
-# --- App analytics / logging ---
+# [字节] 火山引擎 AppLog · 行为统计 (第三方 App 里的字节 SDK)
 ||tobapplog.volceapplog.com^$important
 ||toblog.volceapplog.com^$important
-||alogus.umeng.com^$important
-||zhihu-web-analytics.zhihu.com^
-# OPPO/ColorOS telemetry (covers conn-service-us-04/05.allawnos.com)
-||allawnos.com^$important
-
-# --- Zhihu ads ---
-||open.kwaizt.com^$important
-
-# --- Douyin ads (Pangolin SDK) ---
+# [字节] 穿山甲 Pangolin · 广告 SDK
 ||api-access.pangolin-sdk-toutiao*.com^$important
 ||api-access.pangolin-sdk-toutiao*.com.*^$important
 ||ads*.zijieapi.com^$important
+# [字节] 广告素材图片
+||p*-ad-sign.byteimg.com^
+# [字节] 巨量引擎 Ocean Engine · 广告转化统计
+||analytics.oceanengine.com^
+# [字节] HTTPDNS (App 自带解析，绕过本机 DNS 过滤)
+||dig.bdurl.net^
+
+# ==================== 腾讯 Tencent ====================
+# [腾讯] WorkBuddy AI · Galileo 遥测、Aegis 前端监控 (对话 API 走 www.workbuddy.ai，不拦)
+||tgalileo.com^
+||galileotelemetry.tencent.com^
+# [腾讯] WorkBuddy AI · InLong/ATTA 数据上报
+||trace.inlong.qq.com^
+# [腾讯] WorkBuddy AI · Ardot 设计画布 (内置 MCP 功能；要用设计功能时删掉这行)
+||ardot.tencent.com^
+# [腾讯] 灯塔 Beacon · App 行为统计
+||beacon.qq.com^
+# [腾讯] 广点通 GDT / 腾讯广告 · 广告 SDK、上报、素材图片
+||gdt.qq.com^
+||e.qq.com^
+||ugdtimg.com^
+# [腾讯] CrashSight · 崩溃日志
+||crashsight-logs-1258344700.cos.ap-shanghai.myqcloud.com^
+
+# ==================== 阿里巴巴 Alibaba ====================
+# [阿里] 友盟 Umeng · App 统计 (推送 upush 不拦)
+||alogus.umeng.com^$important
+||alogsus.umeng.com^
+||oslogs.umeng.com^
+||amdcopen.m.umeng.com^
+# [阿里] Aplus (mmstat) · 网页/App 统计 (log.mmstat.com 不拦：AdGuard 官方表也特意放行它)
+||gm.mmstat.com^
+||s-gm.mmstat.com^
+||d-gm.mmstat.com^
+||ws.mmstat.com^
+# [阿里云] 日志服务 SLS · App 原始日志上报
+||hdp-raw-log.cn-shanghai.log.aliyuncs.com^
+||client-upload.cn-shanghai.log.aliyuncs.com^
+# [阿里] HTTPDNS
+||httpdns.alicdn.com^
+# [阿里] UC / 夸克 · 行为日志
+||applog.uc.cn^
+# [阿里] 高德地图 SDK · 日志
+||dualstack-logs.amap.com^
+
+# ==================== 小红书 Xiaohongshu / RedNote ====================
+# [小红书] APM 性能监控、行为追踪、崩溃上报
+||apm-native.xiaohongshu.com^
+||apm-fe.xiaohongshu.com^
+||spider-tracker.xiaohongshu.com^
+||crash.xiaohongshu.com^
+# [小红书] 国际版 RedNote 域名 · 性能监控、崩溃上报、前端统计
+||apm-native.rnote.com^
+||apm-fe.rnote.com^
+||crash.rnote.com^
+||fe-platform-stat-tx-sg.rednotecdn.com^
+# [小红书] 广告素材图片
+||ads-*.xhscdn.com^
+
+# ==================== 知乎 Zhihu ====================
+# [知乎] 网页统计、Sentry 崩溃、APM 性能监控
+||zhihu-web-analytics.zhihu.com^
+||sentry.in.zhihu.com^
+||crash2.zhihu.com^
+||apm.zhihu.com^
+# [知乎] 视频 CDN (vzuu = 知乎视频，旧注释写的"抖音/TikTok 视频追踪"不对；知乎视频放不出来就删这两行)
+||vdn1.vzuu.com^
+||vdn.vzuu.com^
+
+# ==================== 快手 Kuaishou ====================
+# [快手] 磁力引擎 · 广告推广 (知乎等 App 里的快手广告)
+||open.kwaizt.com^$important
+
+# ==================== 小米 Xiaomi ====================
+# [小米] MIUI / HyperOS · 系统广告、追踪、质量日志
+||ad.intl.xiaomi.com^
+||tracking.intl.miui.com^
+||mqs-log.miui.com^
+
+# ==================== OPPO / 一加 OnePlus ====================
+# [OPPO/一加] ColorOS 海外服务 (allawnos) · 遥测
+||allawnos.com^$important
+
+# ==================== 哔哩哔哩 Bilibili ====================
+# [B站] 游戏日志、视频 HTTPDNS
+||line1-log.biligame.net^
+||httpdns.bilivideo.com^
+
+# ==================== 推送 SDK 的统计部分 (推送通道本身不拦) ====================
+# [极光 JPush] 统计
+||gd-stats.jpush.cn^
+||ali-stats.jpush.cn^
+# [个推 Getui] getui.net 数据、设备 ID (推送走 getui.com，不拦)
+||getui.net^
+
+# ==================== HTTPDNS (其他) ====================
+# [华为云 CDN] HTTPDNS
+||httpdns.c.cdnhwc2.com^
+# [来源未确认] HTTPDNS
+||httpdns.kwd.inkuai.com^
+
+# ==================== Google ====================
+# [Google] AdSense · 网页广告
+||googlesyndication.com^
+# [Google] Firebase Analytics、Google Analytics · 统计 (doubleclick、*.google.com 在白名单里，故意不拦)
+||app-measurement.com^
+||google-analytics.com^
+# [Google] Firebase Crashlytics · 崩溃上报配置
+||firebase-settings.crashlytics.com^
+
+# ==================== Apple ====================
+# [Apple] App 分析共享 (分享给开发者)、iCloud 统计
+||app-analytics-services.com^
+||metrics.icloud.com^
+
+# ==================== Microsoft ====================
+# [微软] Edge / MSN · 遥测 (Xbox 用的 *.events.data.microsoft.com 在白名单里，不拦)
+||browser.events.data.msn.com^
+# [微软] Clarity · 网页录屏统计
+||clarity.ms^
+
+# ==================== Amazon ====================
+# [亚马逊] Prime Video · 播放遥测
+||telemetry.insights.video.a2z.com^
+
+# ==================== 其他统计 / 广告 / 遥测 ====================
+# [Sentry] 各种 App 的崩溃上报
+||ingest.sentry.io^
+||ingest.us.sentry.io^
+# [Twilio Segment] 行为统计
+||api.segment.io^
+# [Tealium] 行为统计
+||tealiumiq.com^
+# [Yandex AppMetrica] App 统计
+||appmetrica.yandex.net^
+# [RuStore] 应用商店统计
+||stats-dg.rustore.ru^
+# [LinkedIn / X(Twitter) / Yahoo] 广告像素、统计
+||px.ads.linkedin.com^
+||static.ads-twitter.com^
+||analytics.yahoo.com^
+# [Tapad / The Trade Desk] 跨设备追踪、程序化广告
+||tapad.com^
+||adsrvr.org^
+# [Adobe Analytics] 银行 App 统计 (Westpac / NAB)
+||smetrics.westpac.com.au^
+||smetrics.nab.com.au^
+# [Mozilla] Firefox 遥测
+||incoming.telemetry.mozilla.org^
+# [NVIDIA] 驱动 / GeForce 遥测
+||telemetry.data.nvidia.com^
+# [eyeo] AdBlock 插件遥测
+||telemetry.eyeo.com^
+||telemetry.getadblock.com^
