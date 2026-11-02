@@ -105,8 +105,9 @@
 ||open.kwaizt.com^$important
 
 # ==================== 小米 Xiaomi ====================
-# [小米] MIUI / HyperOS · 系统广告、追踪、质量日志
-||ad.intl.xiaomi.com^
+# [小米] MIUI / HyperOS · 追踪、质量日志
+# 不拦 ad.intl.xiaomi.com (系统广告配置): 拦了之后 POCO 对 sdkconfig.ad.intl.xiaomi.com
+# 狂重试 (一晚 1100+ 次)，系统更新也开始不正常。广告请在手机设置里关。
 ||tracking.intl.miui.com^
 ||mqs-log.miui.com^
 
